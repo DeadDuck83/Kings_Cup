@@ -17,7 +17,7 @@ const GameSummary = ({ game }) => {
           <p className="grey-text">April 12, 2pm</p>
         </div>
         <div className="card-action">
-          <a href="#">This is a link</a>
+          <p>This is a link</p>
         </div>
       </div>
     </div>

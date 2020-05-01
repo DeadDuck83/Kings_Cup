@@ -3,6 +3,9 @@ import Notifications from "./Notifications";
 import GameList from "../games/GameList";
 import Jumbotron from "./Jumbotron";
 import { connect } from "react-redux";
+// Use this one to BIND to react
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 
 const Dashboard = ({ games }) => {
   return (
@@ -15,9 +18,13 @@ const Dashboard = ({ games }) => {
 };
 
 const mapStateToProps = (state) => {
+  console.log("state from firebase: ", state);
   return {
-    games: state.game.games,
+    games: state.firestore.ordered.games,
   };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: "games" }])
+)(Dashboard);
